@@ -1,0 +1,132 @@
+#include "stdint.h"
+
+#define RCC_BASE_ADDR 0x40023800
+#define GPIOC_BASE_ADDR 0x40020800
+#define TIM1_BASE_ADDR 0x40010000
+#define GPIOA_BASE_ADDR     0x40020000
+
+
+int LED_state = 0;
+
+void LED_init(void)
+{
+    uint32_t* GPIOC_MODER = (uint32_t*)(GPIOC_BASE_ADDR + 0x00);
+    uint32_t* RCC_AHB1ENR = (uint32_t*)(RCC_BASE_ADDR + 0x30);
+
+    *RCC_AHB1ENR |= (1 << 2);
+
+    *GPIOC_MODER &= ~(0b11 << (13 * 2));
+    *GPIOC_MODER |=  (0b01 << (13 * 2));
+}
+
+void LED_control(int state)
+{
+    uint32_t* GPIOC_BSRR = (uint32_t*)(GPIOC_BASE_ADDR + 0x18);
+
+    if (state == 1) {
+        *GPIOC_BSRR = (1 << (13 + 16));
+    } else {
+        *GPIOC_BSRR = (1 << 13);
+    }
+}
+
+void timer_init()
+{
+    uint32_t* RCC_APB2ENR = (uint32_t*)(RCC_BASE_ADDR + 0x44);
+	uint16_t* TIM1_PSC = (uint16_t*)(TIM1_BASE_ADDR + 0x28);	//Prescaler
+	uint16_t* TIM1_ARR = (uint16_t*)(TIM1_BASE_ADDR + 0x2C);	//Auto reload
+	uint16_t* TIM1_CR1 = (uint16_t*)(TIM1_BASE_ADDR + 0x00);
+	//uint16_t* TIM1_DIER = (uint16_t*)(TIM1_BASE_ADDR + 0x0C);	//TIM1 DMA/interrupt enable register
+
+	*RCC_APB2ENR |= (1 << 0);
+
+	*TIM1_PSC = 16;	//prescaler = 16
+	*TIM1_ARR = 1;	//auto reload = 1 count
+
+	*TIM1_CR1 |= (1 << 0);	//enable TIM1
+}
+
+void delay_1ms()
+{
+	uint16_t* TIM1_SR = (uint16_t*)(TIM1_BASE_ADDR + 0x10);
+	while(((*TIM1_SR >> 0) &1) ==0);
+	*TIM1_SR &= ~(1 << 0);
+}
+void delay_t(int time)
+{
+	int t = 0;
+	while(t < time)
+	{
+		delay_1ms();
+		t++;
+	}
+}
+
+void PWM_init(void)
+{
+    // ==== 1. Enable clock cho GPIOA và TIM1 ====
+    volatile uint32_t* RCC_AHB1ENR = (uint32_t*)(RCC_BASE_ADDR + 0x30);
+    volatile uint32_t* RCC_APB2ENR = (uint32_t*)(RCC_BASE_ADDR + 0x44);
+    *RCC_AHB1ENR |= (1 << 0);  // GPIOAEN
+    *RCC_APB2ENR |= (1 << 0);  // TIM1EN
+
+    // ==== 2. PA8 -> Alternate Function AF1 ====
+    volatile uint32_t* GPIOA_MODER = (uint32_t*)(GPIOA_BASE_ADDR + 0x00);
+    volatile uint32_t* GPIOA_AFRH  = (uint32_t*)(GPIOA_BASE_ADDR + 0x24);
+
+    *GPIOA_MODER &= ~(0b11 << (8 * 2));  // clear mode PA8
+    *GPIOA_MODER |=  (0b10 << (8 * 2));  // set AF mode
+    *GPIOA_AFRH  &= ~(0xF << ((8 - 8) * 4));
+    *GPIOA_AFRH  |=  (0x1 << ((8 - 8) * 4)); // AF1 (TIM1_CH1)
+
+    // ==== 3. Cấu hình Timer1 ====
+    volatile uint32_t* TIM1_PSC  = (uint32_t*)(TIM1_BASE_ADDR + 0x28);
+    volatile uint32_t* TIM1_ARR  = (uint32_t*)(TIM1_BASE_ADDR + 0x2C);
+    volatile uint32_t* TIM1_CCR1 = (uint32_t*)(TIM1_BASE_ADDR + 0x34);
+    volatile uint32_t* TIM1_CCMR1 = (uint32_t*)(TIM1_BASE_ADDR + 0x18);
+    volatile uint32_t* TIM1_CCER  = (uint32_t*)(TIM1_BASE_ADDR + 0x20);
+    volatile uint32_t* TIM1_BDTR  = (uint32_t*)(TIM1_BASE_ADDR + 0x44);
+    volatile uint32_t* TIM1_CR1   = (uint32_t*)(TIM1_BASE_ADDR + 0x00);
+    volatile uint32_t* TIM1_EGR   = (uint32_t*)(TIM1_BASE_ADDR + 0x14);
+
+    *TIM1_PSC = 16-1;       // chia 16MHz/16 = 1MHz tick
+    *TIM1_ARR = 20000-200;      // chu kỳ 1000 tick => PWM tần số = 1kHz
+    *TIM1_CCR1 = 500-1;     // duty 50%
+
+    // ==== 4. Chọn PWM mode 1, bật preload ====
+    *TIM1_CCMR1 &= ~(0xFF << 0);
+    *TIM1_CCMR1 |= (6 << 4) | (1 << 3);  // OC1M=110, OC1PE=1
+
+    // ==== 5. Bật output channel 1 ====
+    *TIM1_CCER |= (1 << 0);   // CC1E=1, active high
+
+    // ==== 6. Bật Main Output Enable (timer advanced) ====
+    *TIM1_BDTR |= (1 << 15);  // MOE=1
+
+    // ==== 7. Kích hoạt update để nạp giá trị ====
+    *TIM1_EGR = 1;            // UG=1
+
+    // ==== 8. Bật timer ====
+    *TIM1_CR1 |= (1 << 0);    // CEN=1
+}
+void PWM_speed(int percentage)
+{
+    volatile uint32_t* TIM1_CCR1 = (uint32_t*)(TIM1_BASE_ADDR + 0x34);
+    *TIM1_CCR1 = percentage ;
+}
+int main(void)
+{
+    PWM_init();
+    PWM_speed(1500);
+    delay_t(500);
+    PWM_speed(1700);
+    while (1)
+    {
+
+
+
+
+    }
+}
+
+
