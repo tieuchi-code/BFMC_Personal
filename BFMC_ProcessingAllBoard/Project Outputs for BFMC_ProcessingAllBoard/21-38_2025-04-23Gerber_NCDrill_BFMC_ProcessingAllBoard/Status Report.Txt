@@ -1,0 +1,33 @@
+Output: Gerber Files
+Type  : Gerber
+From  : PCB Document [BFMC_ProcessingAllBoard.PcbDoc]
+   Generated File[BFMC_ProcessingAllBoard.GTO]
+   Generated File[BFMC_ProcessingAllBoard.GTP]
+   Generated File[BFMC_ProcessingAllBoard.GTS]
+   Generated File[BFMC_ProcessingAllBoard.GTL]
+   Generated File[BFMC_ProcessingAllBoard.GBL]
+   Generated File[BFMC_ProcessingAllBoard.GBS]
+   Generated File[BFMC_ProcessingAllBoard.GBP]
+   Generated File[BFMC_ProcessingAllBoard.GBO]
+   Generated File[BFMC_ProcessingAllBoard.GM1]
+   Generated File[BFMC_ProcessingAllBoard.GM3]
+   Generated File[BFMC_ProcessingAllBoard.GM11]
+   Generated File[BFMC_ProcessingAllBoard.GM13]
+   Generated File[BFMC_ProcessingAllBoard.GM14]
+   Generated File[BFMC_ProcessingAllBoard.GM15]
+   Generated File[BFMC_ProcessingAllBoard.GM16]
+   Generated File[BFMC_ProcessingAllBoard.GM17]
+   Generated File[BFMC_ProcessingAllBoard.GKO]
+   Generated File[BFMC_ProcessingAllBoard.GPT]
+   Generated File[BFMC_ProcessingAllBoard.GPB]
+   Generated File[BFMC_ProcessingAllBoard.GD1]
+   Generated File[BFMC_ProcessingAllBoard.GG1]
+   Generated File[BFMC_ProcessingAllBoard.RUL]
+   Generated File[BFMC_ProcessingAllBoard.EXTREP]
+   Generated File[BFMC_ProcessingAllBoard.REP]
+
+
+Files Generated   : 24
+Documents Printed : 0
+
+Finished Output Generation At 9:38:41 PM On 4/23/2025

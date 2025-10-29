@@ -1,0 +1,41 @@
+Change Component Designator: OldDesignator=C37 NewDesignator=C41
+Change Component Designator: OldDesignator=C38 NewDesignator=C42
+Change Component Designator: OldDesignator=C39 NewDesignator=C37
+Change Component Designator: OldDesignator=C40 NewDesignator=C38
+Change Component Designator: OldDesignator=C41 NewDesignator=C39
+Change Component Designator: OldDesignator=C42 NewDesignator=C40
+Change Component Designator: OldDesignator=P? NewDesignator=P15
+Change Component Designator: OldDesignator=P? NewDesignator=P16
+Change Component Designator: OldDesignator=P? NewDesignator=P17
+Change Component Designator: OldDesignator=P? NewDesignator=P18
+Change Component Designator: OldDesignator=P? NewDesignator=P19
+Change Component Designator: OldDesignator=P? NewDesignator=P20
+Change Component Designator: OldDesignator=P? NewDesignator=P21
+Change Component Designator: OldDesignator=P? NewDesignator=P22
+Change Net Name : Old Net Name=NetP?_1 New Net Name=NetP15_1
+Change Net Name : Old Net Name=NetP?_2 New Net Name=NetP17_2
+Added Pin To Net: NetName=NetP16_1 Pin=P16-1
+Added Pin To Net: NetName=NetP16_1 Pin=U2-CN10_35
+Added Net: Name=NetP16_1
+Added Pin To Net: NetName=NetP18_2 Pin=P18-2
+Added Pin To Net: NetName=NetP18_2 Pin=U2-CN10_37
+Added Net: Name=NetP18_2
+Added Pin To Net: NetName=NetP19_1 Pin=P19-1
+Added Pin To Net: NetName=NetP19_1 Pin=U2-CN9_4
+Added Net: Name=NetP19_1
+Added Pin To Net: NetName=NetP20_1 Pin=P20-1
+Added Pin To Net: NetName=NetP20_1 Pin=U2-CN7_30
+Added Net: Name=NetP20_1
+Added Pin To Net: NetName=NetP21_2 Pin=P21-2
+Added Pin To Net: NetName=NetP21_2 Pin=U2-CN9_6
+Added Net: Name=NetP21_2
+Added Pin To Net: NetName=NetP22_2 Pin=P22-2
+Added Pin To Net: NetName=NetP22_2 Pin=U2-CN7_32
+Added Net: Name=NetP22_2
+Added Member To Class: ClassName=BFMC_Actuators Member=Component P16 61300211121
+Added Member To Class: ClassName=BFMC_Actuators Member=Component P17 61300211121
+Added Member To Class: ClassName=BFMC_Actuators Member=Component P18 61300211121
+Added Member To Class: ClassName=BFMC_Actuators Member=Component P19 61300211121
+Added Member To Class: ClassName=BFMC_Actuators Member=Component P20 61300211121
+Added Member To Class: ClassName=BFMC_Actuators Member=Component P21 61300211121
+Added Member To Class: ClassName=BFMC_Actuators Member=Component P22 61300211121

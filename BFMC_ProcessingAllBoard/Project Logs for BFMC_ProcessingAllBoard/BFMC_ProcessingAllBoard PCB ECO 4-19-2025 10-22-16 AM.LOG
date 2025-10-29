@@ -1,0 +1,25 @@
+Added Component: Designator=U3(RP2040_ZERO)
+Added Pin To Net: NetName=NetP3_1 Pin=U3-1
+Added Pin To Net: NetName=NetP3_2 Pin=U3-2
+Added Pin To Net: NetName=NetP3_4 Pin=U3-3
+Added Pin To Net: NetName=NetP3_5 Pin=U3-4
+Added Pin To Net: NetName=NetP4_3 Pin=U3-5
+Added Pin To Net: NetName=NetP4_2 Pin=U3-6
+Added Pin To Net: NetName=NetP5_2 Pin=U3-7
+Added Pin To Net: NetName=NetP5_3 Pin=U3-8
+Added Pin To Net: NetName=NetP6_3 Pin=U3-9
+Added Pin To Net: NetName=NetP6_2 Pin=U3-10
+Added Pin To Net: NetName=NetP8_2 Pin=U3-11
+Added Pin To Net: NetName=NetP8_3 Pin=U3-12
+Added Pin To Net: NetName=NetP9_2 Pin=U3-13
+Added Pin To Net: NetName=NetP9_3 Pin=U3-14
+Added Pin To Net: NetName=NetP10_2 Pin=U3-15
+Added Pin To Net: NetName=NetP10_3 Pin=U3-16
+Added Pin To Net: NetName=NetP7_3 Pin=U3-17
+Added Pin To Net: NetName=NetC35_2 Pin=U3-18
+Added Pin To Net: NetName=NetR5_1 Pin=U3-19
+Added Pin To Net: NetName=NetR7_1 Pin=U3-20
+Added Pin To Net: NetName=+3.3 Pin=U3-21
+Added Pin To Net: NetName=DGND Pin=U3-22
+Added Pin To Net: NetName=+5 Pin=U3-23
+Added Member To Class: ClassName=BFMC_Microcontrollers Member=Component U3 RP2040_Zero

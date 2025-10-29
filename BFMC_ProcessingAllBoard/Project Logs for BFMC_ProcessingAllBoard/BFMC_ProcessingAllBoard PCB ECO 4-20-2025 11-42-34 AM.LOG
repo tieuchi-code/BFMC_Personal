@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=NetP15_1 Pin=U2-CN9_3
+Removed Pin From Net: NetName=NetP19_1 Pin=U2-CN9_4
+Removed Pin From Net: NetName=NetP17_2 Pin=U2-CN9_5
+Removed Pin From Net: NetName=NetP21_2 Pin=U2-CN9_6
+Change Component Footprint: Designator=U2 Old Footprint=Nucleo-F401RE New Footprint=NUCLEO-F401RE-HEADER
+Change Component Comment : Designator=U2 Old Comment=NUCLEO-F401RE New Comment=NUCLEO-F401RE_HEADER
+Added Pin To Net: NetName=NetP21_2 Pin=U2-CN10_27
+Added Pin To Net: NetName=NetP17_2 Pin=U2-CN10_29
+Added Pin To Net: NetName=NetP19_1 Pin=U2-CN10_31
+Added Pin To Net: NetName=NetP15_1 Pin=U2-CN10_33
+Added Member To Class: ClassName=BFMC_Actuators Member=Component C38 1 uF, 16 VDC
+Added Member To Class: ClassName=BFMC_Actuators Member=Component C39 10 nF, 10 VDC
+Added Member To Class: ClassName=BFMC_Actuators Member=Component C41 10 µF, 16 V
+Added Member To Class: ClassName=BFMC_Actuators Member=Component C42 1 µF, 16 V
