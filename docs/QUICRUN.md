@@ -62,7 +62,7 @@ Truyền vào giá trị từ 500 -> 2500
 void PWM_servo_speed(int width)
 {
     volatile uint32_t* TIM1_CCR1 = (uint32_t*)(TIM1_BASE_ADDR + 0x34);
-    *TIM1_CCR1 = width ;
+    *TIM1_CCR1 = width ; 
 }
 ```
 
