@@ -56,23 +56,41 @@ void CHI_UART_Transmit(uint8_t data)
 
 void CHI_UART_send_number(int num)
 {
-    char buf[12]; int i = 0;
-    if (num == 0) { CHI_UART_Transmit('0'); return; }
-    if (num < 0) { CHI_UART_Transmit('-'); num = -num; }
-    while (num > 0) { buf[i++] = (num%10)+'0'; num/=10; }
+    char buf[12]; 
+    int i = 0;
+    if (num == 0) { 
+        CHI_UART_Transmit('0');
+        return; 
+    }
+    if (num < 0) { 
+        CHI_UART_Transmit('-'); 
+        num = -num; 
+    }
+    while (num > 0) {
+        buf[i++] = (num%10)+'0'; 
+        num/=10; 
+    }
     while (i--) CHI_UART_Transmit(buf[i]);
 }
 void CHI_UART_print_log(char *m)
 {
-    for (int i = 0; m[i]; i++) CHI_UART_Transmit((uint8_t)m[i]);
+    for (int i = 0; m[i]; i++) {
+        CHI_UART_Transmit((uint8_t)m[i]);
+    }
 }
 void CHI_UART_send_float(float v)
 {
-    if (v < 0) { CHI_UART_Transmit('-'); v = -v; }
+    if (v < 0) { 
+        CHI_UART_Transmit('-'); 
+        v = -v; 
+    }
     int ip = (int)v;
     int fp = (int)((v - ip) * 100);
-    CHI_UART_send_number(ip); CHI_UART_Transmit('.');
-    if (fp < 10) CHI_UART_Transmit('0');
+    CHI_UART_send_number(ip); 
+    CHI_UART_Transmit('.');
+    if (fp < 10) {
+        CHI_UART_Transmit('0');
+    }
     CHI_UART_send_number(fp);
     CHI_UART_Transmit('\r'); CHI_UART_Transmit('\n');
 }

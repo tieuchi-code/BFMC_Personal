@@ -1,4 +1,0 @@
-Removed Pin From Net: NetName=AGND Pin=T3-1
-Added Pin To Net: NetName=AGND1 Pin=T3-1
-Added Net: Name=AGND1
-Added Member To Class: ClassName=BFMC_PowerDistribution Member=Component T3 NET_TIE

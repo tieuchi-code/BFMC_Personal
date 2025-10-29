@@ -1,7 +1,0 @@
-Record=TopLevelDocument|FileName=BFMC_Actuators.SchDoc|SheetNumber=7
-Record=NoMainPathDocument|SourceDocument=BFMC_Actuators.SchDoc|FileName=BFMC_FileInfo.SchDoc|SheetNumber=3
-Record=NoMainPathDocument|SourceDocument=BFMC_Actuators.SchDoc|FileName=BFMC_Microcontrollers.SchDoc|SheetNumber=5
-Record=NoMainPathDocument|SourceDocument=BFMC_Actuators.SchDoc|FileName=BFMC_PowerDiagram.SchDoc|SheetNumber=1
-Record=NoMainPathDocument|SourceDocument=BFMC_Actuators.SchDoc|FileName=BFMC_PowerDistribution.SchDoc|SheetNumber=4
-Record=NoMainPathDocument|SourceDocument=BFMC_Actuators.SchDoc|FileName=BFMC_SensorProcessing.SchDoc|SheetNumber=6
-Record=NoMainPathDocument|SourceDocument=BFMC_Actuators.SchDoc|FileName=BFMC_SignalDiagram.SchDoc|SheetNumber=2

@@ -1,8 +1,0 @@
-Added Component: Designator=T4(NET_TIE_0.5MM)
-Added Pin To Net: NetName=AGND Pin=T4-1
-Added Pin To Net: NetName=GND Pin=T4-2
-Added Member To Class: ClassName=BFMC_PowerDistribution Member=Component T4 NET_TIE
-Added Member To Class: ClassName=BFMC_PowerDistribution Member=Component TP1 Test_Point
-Added Member To Class: ClassName=BFMC_PowerDistribution Member=Component TP2 Test_Point
-Added Member To Class: ClassName=BFMC_PowerDistribution Member=Component TP3 Test_Point
-Added Member To Class: ClassName=BFMC_PowerDistribution Member=Component TP4 Test_Point

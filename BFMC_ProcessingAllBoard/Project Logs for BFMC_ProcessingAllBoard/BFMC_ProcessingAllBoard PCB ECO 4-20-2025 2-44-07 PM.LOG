@@ -1,5 +1,0 @@
-Change Component Footprint: Designator=T1 Old Footprint=NET_TIE_0.5MM New Footprint=NET_TIE_2.0mm
-Added Component: Designator=T3(NET_TIE_0.5MM)
-Added Pin To Net: NetName=AGND Pin=T3-1
-Added Pin To Net: NetName=GND Pin=T3-2
-Added Member To Class: ClassName=BFMC_PowerDistribution Member=Component T3 NET_TIE
