@@ -62,6 +62,6 @@ Truyền vào giá trị góc 0 -> 180
 void PWM_servo_steer(int angle)
 {
     volatile uint32_t* TIM1_CCR1 = (uint32_t*)(TIM1_BASE_ADDR + 0x34);
-    *TIM1_CCR1 = 1000 + (angle/180) * 1000 ;
+    *TIM1_CCR1 = 1000 + (angle/180) * 1000 ; 
 }
 ```
