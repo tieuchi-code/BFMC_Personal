@@ -1,0 +1,10 @@
+21:37:22 **** Incremental Build of configuration Debug for project BFMC_HCSR04_401 ****
+make -j16 all 
+arm-none-eabi-size  BFMC_HCSR04_401.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4748	     12	   1572	   6332	   18bc	BFMC_HCSR04_401.elf
+Finished building: default.size.stdout
+ 
+
+21:37:23 Build Finished. 0 errors, 0 warnings. (took 320ms)
+

@@ -1,0 +1,8 @@
+../Core/Src/main.c:38:6:UART_init	1
+../Core/Src/main.c:81:6:UART_Transmit	3
+../Core/Src/main.c:90:6:UART_send_number	5
+../Core/Src/main.c:98:6:UART_print_log	2
+../Core/Src/main.c:102:6:UART_send_float	3
+../Core/Src/main.c:113:6:I2C1_Master_Init	1
+../Core/Src/main.c:148:6:I2C_master_transmit	5
+../Core/Src/main.c:177:5:main	1

@@ -1,0 +1,16 @@
+../Core/Src/main.c:38:6:UART_init	32	static
+../Core/Src/main.c:81:6:UART_Transmit	24	static
+../Core/Src/main.c:90:6:UART_send_number	32	static
+../Core/Src/main.c:98:6:UART_print_log	24	static
+../Core/Src/main.c:102:6:UART_send_float	24	static
+../Core/Src/main.c:113:6:I2C1_Master_Init	56	static
+../Core/Src/main.c:155:13:I2C1_WriteReg	32	static
+../Core/Src/main.c:179:13:I2C1_ReadMulti	40	static
+../Core/Src/main.c:219:16:BNO055_ReadReg	24	static
+../Core/Src/main.c:227:6:BNO055_Init	8	static
+../Core/Src/main.c:246:6:BNO055_ReadEuler_raw	32	static
+../Core/Src/main.c:257:9:BNO055_ReadCalibStatus	8	static
+../Core/Src/main.c:261:6:I2C_master_transmit	32	static
+../Core/Src/main.c:287:6:I2C1_Slave_Init	48	static
+../Core/Src/main.c:340:9:I2C1_Slave_Receive	32	static
+../Core/Src/main.c:370:5:main	24	static

@@ -1,0 +1,5 @@
+../MyDriver/Src/uart.c:14:6:CHI_UART_Transmit	24	static
+../MyDriver/Src/uart.c:24:6:CHI_UART_init	32	static
+../MyDriver/Src/uart.c:66:6:CHI_UART_send_number	32	static
+../MyDriver/Src/uart.c:94:6:CHI_UART_print_log	24	static
+../MyDriver/Src/uart.c:102:6:CHI_UART_send_float	24	static
