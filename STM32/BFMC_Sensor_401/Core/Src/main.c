@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -26,6 +27,12 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+typedef struct
+{
+    float yaw;
+    float pitch;
+    float roll;
+} IMU_Data_t;
 
 /* USER CODE END PTD */
 
@@ -42,13 +49,81 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
+/* Definitions for IMU */
+osThreadId_t IMUHandle;
+const osThreadAttr_t IMU_attributes = {
+  .name = "IMU",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal1,
+};
+/* Definitions for UART_TX */
+osThreadId_t UART_TXHandle;
+const osThreadAttr_t UART_TX_attributes = {
+  .name = "UART_TX",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal2,
+};
+/* Definitions for QUICKRUN */
+osThreadId_t QUICKRUNHandle;
+const osThreadAttr_t QUICKRUN_attributes = {
+  .name = "QUICKRUN",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityHigh1,
+};
+/* Definitions for Servo */
+osThreadId_t ServoHandle;
+const osThreadAttr_t Servo_attributes = {
+  .name = "Servo",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityHigh1,
+};
+/* Definitions for UART_RX */
+osThreadId_t UART_RXHandle;
+const osThreadAttr_t UART_RX_attributes = {
+  .name = "UART_RX",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityHigh1,
+};
+/* Definitions for Fushion */
+osThreadId_t FushionHandle;
+const osThreadAttr_t Fushion_attributes = {
+  .name = "Fushion",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for imu */
+osMessageQueueId_t imuHandle;
+const osMessageQueueAttr_t imu_attributes = {
+  .name = "imu"
+};
+/* Definitions for as6500 */
+osMessageQueueId_t as6500Handle;
+const osMessageQueueAttr_t as6500_attributes = {
+  .name = "as6500"
+};
+/* Definitions for command */
+osMessageQueueId_t commandHandle;
+const osMessageQueueAttr_t command_attributes = {
+  .name = "command"
+};
+/* Definitions for response */
+osMessageQueueId_t responseHandle;
+const osMessageQueueAttr_t response_attributes = {
+  .name = "response"
+};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void imu_func(void *argument);
+void uart_tx_func(void *argument);
+void quickrun_func(void *argument);
+void servo_func(void *argument);
+void uart_rx_func(void *argument);
+void fushion_func(void *argument);
+
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -91,41 +166,87 @@ int main(void)
   I2C1_Master_Init();
 
   CHI_UART_print_log("BNO055 scan...\r\n");
+
   uint8_t id = BNO055_ReadReg(BNO055_CHIP_ID);
-  CHI_UART_print_log("CHIP_ID=");
-  CHI_UART_send_number(id);
-  CHI_UART_print_log("\r\n");
-  if (id != BNO055_CHIP_ID_VAL) {
-  	CHI_UART_print_log("BNO055 not found (addr/PS/pull-up?)\r\n");
-      while(1);
+  if (id != BNO055_CHIP_ID_VAL)
+  {
+      CHI_UART_print_log("BNO055 NOT FOUND\r\n");
+      while (1);
   }
 
-  CHI_UART_print_log("BNO055 init...\r\n");
+  CHI_UART_print_log("BNO055 OK\r\n");
   BNO055_Init();
 
-  HAL_Delay(50);
-
   /* USER CODE END 2 */
+
+  /* Init scheduler */
+  osKernelInitialize();
+
+  /* USER CODE BEGIN RTOS_MUTEX */
+  /* add mutexes, ... */
+  /* USER CODE END RTOS_MUTEX */
+
+  /* USER CODE BEGIN RTOS_SEMAPHORES */
+  /* add semaphores, ... */
+  /* USER CODE END RTOS_SEMAPHORES */
+
+  /* USER CODE BEGIN RTOS_TIMERS */
+  /* start timers, add new ones, ... */
+  /* USER CODE END RTOS_TIMERS */
+
+  /* Create the queue(s) */
+  /* creation of imu */
+  imuHandle = osMessageQueueNew (16, sizeof(uint8_t), &imu_attributes);
+
+  /* creation of as6500 */
+  as6500Handle = osMessageQueueNew (16, sizeof(uint8_t), &as6500_attributes);
+
+  /* creation of command */
+  commandHandle = osMessageQueueNew (16, sizeof(uint8_t), &command_attributes);
+
+  /* creation of response */
+  responseHandle = osMessageQueueNew (16, sizeof(uint8_t8), &response_attributes);
+
+  /* USER CODE BEGIN RTOS_QUEUES */
+  /* add queues, ... */
+  /* USER CODE END RTOS_QUEUES */
+
+  /* Create the thread(s) */
+  /* creation of IMU */
+  IMUHandle = osThreadNew(imu_func, NULL, &IMU_attributes);
+
+  /* creation of UART_TX */
+  UART_TXHandle = osThreadNew(uart_tx_func, NULL, &UART_TX_attributes);
+
+  /* creation of QUICKRUN */
+  QUICKRUNHandle = osThreadNew(quickrun_func, NULL, &QUICKRUN_attributes);
+
+  /* creation of Servo */
+  ServoHandle = osThreadNew(servo_func, NULL, &Servo_attributes);
+
+  /* creation of UART_RX */
+  UART_RXHandle = osThreadNew(uart_rx_func, NULL, &UART_RX_attributes);
+
+  /* creation of Fushion */
+  FushionHandle = osThreadNew(fushion_func, NULL, &Fushion_attributes);
+
+  /* USER CODE BEGIN RTOS_THREADS */
+  /* add threads, ... */
+  /* USER CODE END RTOS_THREADS */
+
+  /* USER CODE BEGIN RTOS_EVENTS */
+  /* add events, ... */
+  /* USER CODE END RTOS_EVENTS */
+
+  /* Start scheduler */
+  osKernelStart();
+
+  /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      int16_t ex, ey, ez;     // raw (1/16 deg)
-      float   yaw, roll, pitch;
-
-      BNO055_ReadEuler_raw(&ex, &ey, &ez);
-
-      yaw   =  ex / 16.0f;    // Heading/Yaw
-      roll  =  ey / 16.0f;    // Roll
-      pitch =  ez / 16.0f;    // Pitch
-
-      CHI_UART_print_log("Yaw: ");
-      CHI_UART_send_float(yaw);
-      CHI_UART_print_log("Pitch: "); CHI_UART_send_float(pitch);
-      CHI_UART_print_log("Roll: ");  CHI_UART_send_float(roll);
-
-      HAL_Delay(300);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -179,6 +300,114 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
+
+/* USER CODE BEGIN Header_imu_func */
+/**
+  * @brief  Function implementing the IMU thread.
+  * @param  argument: Not used
+  * @retval None
+  */
+/* USER CODE END Header_imu_func */
+void imu_func(void *argument)
+{
+  /* USER CODE BEGIN 5 */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_uart_tx_func */
+/**
+* @brief Function implementing the UART_TX thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_uart_tx_func */
+void uart_tx_func(void *argument)
+{
+  /* USER CODE BEGIN uart_tx_func */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END uart_tx_func */
+}
+
+/* USER CODE BEGIN Header_quickrun_func */
+/**
+* @brief Function implementing the QUICKRUN thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_quickrun_func */
+void quickrun_func(void *argument)
+{
+  /* USER CODE BEGIN quickrun_func */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END quickrun_func */
+}
+
+/* USER CODE BEGIN Header_servo_func */
+/**
+* @brief Function implementing the Servo thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_servo_func */
+void servo_func(void *argument)
+{
+  /* USER CODE BEGIN servo_func */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END servo_func */
+}
+
+/* USER CODE BEGIN Header_uart_rx_func */
+/**
+* @brief Function implementing the UART_RX thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_uart_rx_func */
+void uart_rx_func(void *argument)
+{
+  /* USER CODE BEGIN uart_rx_func */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END uart_rx_func */
+}
+
+/* USER CODE BEGIN Header_fushion_func */
+/**
+* @brief Function implementing the Fushion thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_fushion_func */
+void fushion_func(void *argument)
+{
+  /* USER CODE BEGIN fushion_func */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END fushion_func */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

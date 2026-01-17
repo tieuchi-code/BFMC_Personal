@@ -1,3 +1,5 @@
-../Core/Src/main.c:65:5:main	2
-../Core/Src/main.c:142:6:SystemClock_Config	3
-../Core/Src/main.c:187:6:Error_Handler	1
+../Core/Src/main.c:93:5:main	2
+../Core/Src/main.c:199:6:SystemClock_Config	3
+../Core/Src/main.c:247:6:func1	1
+../Core/Src/main.c:278:6:func2	2
+../Core/Src/main.c:312:6:Error_Handler	1

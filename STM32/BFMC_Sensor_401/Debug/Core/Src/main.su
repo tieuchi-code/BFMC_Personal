@@ -1,3 +1,5 @@
-../Core/Src/main.c:65:5:main	32	static
-../Core/Src/main.c:142:6:SystemClock_Config	88	static
-../Core/Src/main.c:187:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:93:5:main	16	static
+../Core/Src/main.c:199:6:SystemClock_Config	88	static
+../Core/Src/main.c:247:6:func1	40	static
+../Core/Src/main.c:278:6:func2	32	static
+../Core/Src/main.c:312:6:Error_Handler	4	static,ignoring_inline_asm
