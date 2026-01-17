@@ -9,7 +9,7 @@
 #define GPIOD_BASE_ADDR      0x40020C00
 #define I2C1_BASE_ADDR       0x40005400
 /* ====== BNO055 I2C ====== */
-#define BNO055_I2C_ADDR      0x28   // 7-bit
+#define BNO055_I2C_ADDR      0x29   // 7-bit
 #define BNO055_CHIP_ID       0x00
 #define BNO055_PAGE_ID       0x07
 #define BNO055_EUL_X_LSB     0x1A   // Heading (Yaw)
@@ -397,13 +397,13 @@ int main(void)
 //        roll  =  ey / 16.0f;    // Roll
 //        pitch =  ez / 16.0f;    // Pitch
 
-//        UART_print_log("Yaw: ");   UART_send_float(yaw);
+        UART_print_log("Yaw: ");   UART_send_float(yaw);
 //        UART_print_log("Pitch: "); UART_send_float(pitch);
 //        UART_print_log("Roll: ");  UART_send_float(roll);
 
 //        HAL_Delay(10);
 //    	I2C1_Slave_Receive();
-//    	HAL_Delay(50);
+    	HAL_Delay(100);
 
 
 
