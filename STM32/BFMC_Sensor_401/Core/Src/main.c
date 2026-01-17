@@ -53,15 +53,15 @@ typedef struct
 osThreadId_t IMUHandle;
 const osThreadAttr_t IMU_attributes = {
   .name = "IMU",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal1,
 };
 /* Definitions for UART_TX */
 osThreadId_t UART_TXHandle;
 const osThreadAttr_t UART_TX_attributes = {
   .name = "UART_TX",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal2,
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityLow1,
 };
 /* Definitions for QUICKRUN */
 osThreadId_t QUICKRUNHandle;
@@ -166,17 +166,19 @@ int main(void)
   I2C1_Master_Init();
 
   CHI_UART_print_log("BNO055 scan...\r\n");
-
   uint8_t id = BNO055_ReadReg(BNO055_CHIP_ID);
-  if (id != BNO055_CHIP_ID_VAL)
-  {
-      CHI_UART_print_log("BNO055 NOT FOUND\r\n");
-      while (1);
+  CHI_UART_print_log("CHIP_ID=");
+  CHI_UART_send_number(id);
+  CHI_UART_print_log("\r\n");
+  if (id != BNO055_CHIP_ID_VAL) {
+  	CHI_UART_print_log("BNO055 not found (addr/PS/pull-up?)\r\n");
+      while(1);
   }
 
-  CHI_UART_print_log("BNO055 OK\r\n");
+  CHI_UART_print_log("BNO055 init...\r\n");
   BNO055_Init();
 
+  HAL_Delay(50);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -196,7 +198,7 @@ int main(void)
 
   /* Create the queue(s) */
   /* creation of imu */
-  imuHandle = osMessageQueueNew (16, sizeof(uint8_t), &imu_attributes);
+  imuHandle = osMessageQueueNew (16, sizeof(IMU_Data_t), &imu_attributes);
 
   /* creation of as6500 */
   as6500Handle = osMessageQueueNew (16, sizeof(uint8_t), &as6500_attributes);
@@ -205,7 +207,7 @@ int main(void)
   commandHandle = osMessageQueueNew (16, sizeof(uint8_t), &command_attributes);
 
   /* creation of response */
-  responseHandle = osMessageQueueNew (16, sizeof(uint8_t8), &response_attributes);
+  responseHandle = osMessageQueueNew (16, sizeof(uint8_t), &response_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -312,10 +314,22 @@ void imu_func(void *argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+    IMU_Data_t imu;
+
+    for (;;)
+    {
+        int16_t ex, ey, ez;
+
+        BNO055_ReadEuler_raw(&ex, &ey, &ez);
+
+        imu.yaw   = ex / 16.0f;
+        imu.roll  = ey / 16.0f;
+        imu.pitch = ez / 16.0f;
+
+        osMessageQueuePut(imuHandle, &imu, 0, 0);
+
+        osDelay(10); // 100 Hz
+    }
   /* USER CODE END 5 */
 }
 
@@ -330,10 +344,23 @@ void uart_tx_func(void *argument)
 {
   /* USER CODE BEGIN uart_tx_func */
   /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+    IMU_Data_t imu;
+
+    for (;;)
+    {
+        if (osMessageQueueGet(imuHandle, &imu, NULL, osWaitForever) == osOK)
+        {
+            CHI_UART_print_log("Yaw:");
+            CHI_UART_send_float(imu.yaw);
+//            CHI_UART_print_log(" Pitch:");
+//            CHI_UART_send_float(imu.pitch);
+//            CHI_UART_print_log(" Roll:");
+//            CHI_UART_send_float(imu.roll);
+//            CHI_UART_print_log("\r\n");
+        }
+        osDelay(100); // 100 Hz
+    }
+
   /* USER CODE END uart_tx_func */
 }
 
@@ -384,10 +411,10 @@ void uart_rx_func(void *argument)
 {
   /* USER CODE BEGIN uart_rx_func */
   /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+    for (;;)
+    {
+        osDelay(1);
+    }
   /* USER CODE END uart_rx_func */
 }
 

@@ -1,5 +1,9 @@
-../Core/Src/main.c:93:5:main	16	static
-../Core/Src/main.c:199:6:SystemClock_Config	88	static
-../Core/Src/main.c:247:6:func1	40	static
-../Core/Src/main.c:278:6:func2	32	static
-../Core/Src/main.c:312:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:140:5:main	16	static
+../Core/Src/main.c:265:6:SystemClock_Config	88	static
+../Core/Src/main.c:313:6:imu_func	40	static
+../Core/Src/main.c:343:6:uart_tx_func	32	static
+../Core/Src/main.c:374:6:quickrun_func	16	static
+../Core/Src/main.c:392:6:servo_func	16	static
+../Core/Src/main.c:410:6:uart_rx_func	16	static
+../Core/Src/main.c:428:6:fushion_func	16	static
+../Core/Src/main.c:443:6:Error_Handler	4	static,ignoring_inline_asm
