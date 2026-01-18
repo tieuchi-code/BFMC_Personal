@@ -107,7 +107,7 @@ void UART_send_float(float v)
     UART_send_number(ip); UART_Transmit('.');
     if (fp < 10) UART_Transmit('0');
     UART_send_number(fp);
-    UART_Transmit('\r'); UART_Transmit('\n');
+//    UART_Transmit('\r'); UART_Transmit('\n');
 }
 
 void I2C1_Master_Init()
@@ -397,10 +397,28 @@ int main(void)
 //        roll  =  ey / 16.0f;    // Roll
 //        pitch =  ez / 16.0f;    // Pitch
 
-        UART_print_log("Yaw: ");   UART_send_float(yaw);
-//        UART_print_log("Pitch: "); UART_send_float(pitch);
-//        UART_print_log("Roll: ");  UART_send_float(roll);
+        UART_print_log("y:");	UART_send_float(yaw);	UART_print_log("\r\n");
+        UART_print_log("p:");	UART_send_float(pitch);	UART_print_log("\r\n");
+        UART_print_log("r:");  UART_send_float(roll);	UART_print_log("\r\n");
 
+//        UART_Transmit('{');
+//        UART_print_log("\"yaw\":");
+//
+//        if (yaw < 0) {
+//            UART_Transmit('-');
+//            yaw = -yaw;
+//        }
+//
+//        int ip = (int)yaw;
+//        int fp = (int)((yaw - ip) * 100);
+//
+//        UART_send_number(ip);
+//        UART_Transmit('.');
+//        if (fp < 10) UART_Transmit('0');
+//        UART_send_number(fp);
+//
+//        UART_Transmit('}');
+//        UART_Transmit('\n');
 //        HAL_Delay(10);
 //    	I2C1_Slave_Receive();
     	HAL_Delay(100);
