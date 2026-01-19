@@ -394,8 +394,8 @@ int main(void)
         BNO055_ReadEuler_raw(&ex, &ey, &ez);
 
         yaw   =  ex / 16.0f;    // Heading/Yaw
-//        roll  =  ey / 16.0f;    // Roll
-//        pitch =  ez / 16.0f;    // Pitch
+        roll  =  ey / 16.0f;    // Roll
+        pitch =  ez / 16.0f;    // Pitch
 
         UART_print_log("y:");	UART_send_float(yaw);	UART_print_log("\r\n");
         UART_print_log("p:");	UART_send_float(pitch);	UART_print_log("\r\n");

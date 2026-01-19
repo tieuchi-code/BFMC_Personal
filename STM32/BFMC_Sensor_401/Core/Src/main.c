@@ -323,8 +323,8 @@ void imu_func(void *argument)
         BNO055_ReadEuler_raw(&ex, &ey, &ez);
 
         imu.yaw   = ex / 16.0f;
-        imu.roll  = ey / 16.0f;
-        imu.pitch = ez / 16.0f;
+//        imu.roll  = ey / 16.0f;
+//        imu.pitch = ez / 16.0f;
 
         osMessageQueuePut(imuHandle, &imu, 0, 0);
 

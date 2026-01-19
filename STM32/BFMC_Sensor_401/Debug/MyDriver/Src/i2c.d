@@ -1,5 +1,5 @@
 MyDriver/Src/i2c.o: ../MyDriver/Src/i2c.c \
- C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver.h \
+ /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver.h \
  ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -25,10 +25,10 @@ MyDriver/Src/i2c.o: ../MyDriver/Src/i2c.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
- C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/i2c.h \
- C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/uart.h \
- C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/bno055.h
-C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver.h:
+ /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/i2c.h \
+ /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/uart.h \
+ /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/bno055.h
+/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -55,6 +55,6 @@ C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
-C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/i2c.h:
-C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/uart.h:
-C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/bno055.h:
+/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/i2c.h:
+/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/uart.h:
+/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/bno055.h:
