@@ -60,8 +60,8 @@ all: main-build
 main-build: BFMC_BNO055_401.elf secondary-outputs
 
 # Tool invocations
-BFMC_BNO055_401.elf BFMC_BNO055_401.map: $(OBJS) $(USER_OBJS) /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_BNO055_401/STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BFMC_BNO055_401.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_BNO055_401/STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BFMC_BNO055_401.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+BFMC_BNO055_401.elf BFMC_BNO055_401.map: $(OBJS) $(USER_OBJS) C:\Users\Admin\Desktop\BFMC_Personal\STM32\BFMC_BNO055_401\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BFMC_BNO055_401.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Admin\Desktop\BFMC_Personal\STM32\BFMC_BNO055_401\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BFMC_BNO055_401.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

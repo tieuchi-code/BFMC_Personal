@@ -35,10 +35,13 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
- /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver.h \
- /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/i2c.h \
- /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/uart.h \
- /home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/bno055.h
+ C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver.h \
+ C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/i2c.h \
+ C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/uart.h \
+ C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/bno055.h \
+ C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/as5600.h \
+ C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/timer.h \
+ C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/servo.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -76,7 +79,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
-/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver.h:
-/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/i2c.h:
-/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/uart.h:
-/home/tieuchi/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/bno055.h:
+C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/mydriver.h:
+C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/i2c.h:
+C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/uart.h:
+C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/bno055.h:
+C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/as5600.h:
+C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/timer.h:
+C:/Users/Admin/Desktop/BFMC_Personal/STM32/BFMC_Sensor_401/MyDriver/Inc/servo.h:

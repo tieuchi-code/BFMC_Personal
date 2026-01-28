@@ -2,7 +2,7 @@
 #include <math.h>
 #include <string.h>
 
-#define USART1_BASE_ADDR   0x40011000UL
+#define USART1_BASE_ADDR	 0x40011000
 #define RCC_BASE_ADDR        0x40023800
 #define GPIOA_BASE_ADDR      0x40020000
 #define GPIOB_BASE_ADDR      0x40020400

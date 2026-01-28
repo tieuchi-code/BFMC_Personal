@@ -12,5 +12,8 @@
 #include "i2c.h"
 #include "uart.h"
 #include "bno055.h"
+#include "as5600.h"
+#include "timer.h"
+#include "servo.h"
 
 #endif /* INC_MYDRIVER_H_ */
