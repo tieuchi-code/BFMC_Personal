@@ -6,3 +6,5 @@ Debug/
 *.map
 *.list
 *.d
+*.xml
+*.cyclo
